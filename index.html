@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/common.css" />
+		<script src="js/jquery-2.1.0.js"></script>
+
+		<script type="text/javascript">
+			document.addEventListener('plusready', function() {
+				//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。"
+
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="public-banner"></div>
+		<div class="top-banner">
+			<div class="nav">
+				<img class="public-container top-img" src="img/merryChrisma.PNG" />
+				<ul class="top-nav">
+					<li class="item">
+						<img class="public-container" src="img/item1.PNG" />
+						<a class="item-text">开门</a>
+					</li>
+					<li class="item">
+						<img class="public-container" src="img/item2.PNG" />
+						<a class="item-text">缴费</a>
+					</li>
+					<li class="item">
+						<img class="public-container" src="img/item3.PNG" />
+						<a class="item-text">报修</a>
+					</li>
+					<li class="item">
+						<img class="public-container" src="img/item4.PNG" />
+						<a class="item-text">投诉</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="middle-content">
+			<span class="middle-text">热门资讯</span>
+			<div class="aline"></div>
+			<ul class="media-list">
+			  <li class="media-item">
+			    <div class="media-left">
+			     	<a class="media-text">公卫宣传资料电子版下载 </a>
+			    	<span>2小时前发布</span>
+			    	<span>54人已阅读</span>
+			    </div>
+			    <div class="media-img">
+			     	<img src="img/media-img.PNG"/>
+			    </div>
+			    <div class="media-aline"></div>
+			  </li>
+			  <li class="media-item">
+			    <div class="media-left">
+			     	<a class="media-text">公卫宣传资料电子版下载 </a>
+			    	<span>2小时前发布</span>
+			    	<span>54人已阅读</span>
+			    </div>
+			    <div class="media-img">
+			     	<img src="img/media-img.PNG"/>
+			    </div>
+			    <div class="media-aline"></div>
+			  </li>
+			  
+			  <li class="media-item">
+			    <div class="media-left">
+			     	<a class="media-text">公卫宣传资料电子版下载 </a>
+			    	<span>2小时前发布</span>
+			    	<span>54人已阅读</span>
+			    </div>
+			    <div class="media-img">
+			     	<img src="img/media-img.PNG"/>
+			    </div>
+			    <div class="media-aline"></div>
+			  </li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(function(){
+			loadNews();
+			
+			function loadNews() {
+					$.ajax({
+						type: "get",
+						url: "data.json",
+						dataType: "json",
+						success:function(data) {
+							var nHtml = "";
+							
+							for (var i = 0; i < data.result.length; i++) {
+								
+								nHtml += "<li class= 'media-item'>";
+								nHtml += "<div class='media-left'>";
+								nHtml += "<a class='media-text'>" + data.result[i].title + "</a>";
+								nHtml += "<span>" + data.result[i].time + "</span>";
+								var status = data.result[i].status;
+								var status_NO = 0;
+								if(status_NO != status){
+									var num = Math.random()*100;
+									num = Math.ceil(num);
+									nHtml += "<span>" + num + "人" + data.result[i].status_DISPLAY + "</span>";								
+								} else{
+									nHtml += "<span>" + data.result[i].status_DISPLAY + "</span>";
+								}
+								nHtml += "</div>";
+								nHtml += "<div class='media-img'>";
+								nHtml += "<img src='" + data.result[i].img + "'" + "/>";
+								nHtml += "</div>";
+								nHtml += "<div class='media-aline'></div>";
+								nHtml += "</li>";		
+							}
+							$(".media-list").empty().append(nHtml);
+							
+						},
+						error: function() {
+
+						}
+					})
+				}
+		})
+		
+		
+	</script>
+</html>
