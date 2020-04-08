@@ -59,8 +59,10 @@ img{
 }
 
 .top-banner{
+	position: relative;
+	top: -14px;
 	width: 100%;
-	height: 240px;
+	height: 250px;
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
 	background-color: white;
@@ -69,18 +71,18 @@ img{
 .nav{
 	margin: 0 auto;
 	width: 91%;
-	height: 1000px;
+	height: 100%;
 }
 
 .top-img{
 	position: relative;
-	top: 2%;
+	top: 8%;
 	border-radius: 15px;
 	width: 100%;
 }
 
 .top-nav{
-	margin-top: 30px;
+	margin-top: 40px;
 	justify-content: space-around;
 }
 
@@ -94,7 +96,6 @@ img{
 
 .middle-content{
 	height: 100%;
-	margin-top: 14px;
 	background-color: white;
 }
 
@@ -176,4 +177,7 @@ img{
 	background-color: #ececec;
 }
 
-
+footer{
+	height: 50px;
+	background-color: white;
+}
